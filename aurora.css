@@ -27,7 +27,7 @@ body {
 #write {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -360,81 +360,4 @@ footer.ty-footer {
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1e1f22;
-        color: #e6e6e6;
-        padding-bottom: 80px;
-    }
-    
-    #write {
-        background: #25282c;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        color: #f0f0f0;
-        border-bottom-color: #444;
-    }
-    
-    h1 {
-        border-bottom-color: #555;
-    }
-    
-    h2 {
-        border-bottom-color: #555;
-    }
-    
-    h4 {
-        color: #ccc;
-    }
-    
-    blockquote {
-        border-left-color: #6a8cc6;
-        background-color: rgba(30, 40, 50, 0.6);
-        color: #c5c5c5;
-    }
-    
-    #write a {
-        color: #6a99cc;
-        border-bottom-color: rgba(106, 153, 204, 0.3);
-    }
-    
-    #write table a {
-        border-bottom: none !important;
-    }
-    
-    table tr th {
-        background-color: #2a2d33;
-        color: #e0e0e0;
-        border-color: #444;
-    }
-    
-    table tr td {
-        color: #ccc;
-        border-color: #444;
-        background-color: #25282c;
-    }
-    
-    table tr:nth-child(2n) {
-        background-color: #2a2d32;
-    }
-    
-    #write .md-fences, #write code {
-        background-color: #2d3035;
-        color: #d4d4d4;
-    }
-    
-    #typora-sidebar {
-        background-color: #25282c !important;
-        border-right-color: #333 !important;
-    }
-    
-    .file-list-item:hover, .file-list-item.active {
-        background-color: rgba(74, 111, 165, 0.2);
-    }
-    
-    footer.ty-footer {
-        background: #25282c;
-        border-top-color: #333;
-    }
-}
+/* Dark-mode overrides moved to aurora-night.css to avoid conflicts with manual theme switching. */

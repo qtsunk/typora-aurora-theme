@@ -1,36 +1,80 @@
+/* 
+ * Aurora Theme (Day Mode)
+ * 优化版 - Optimized based on Typora documentation
+ */
+
 :root {
+    /* 核心布局背景与文本颜色 */
+    --bg-color: #ffffff;
+    --text-color: #343a40;
     --side-bar-bg-color: #f8f9fa;
     --control-text-color: #6c757d;
+
+    /* 主题色调 */
     --primary-color: #4a6fa5;
+    --primary-hover-color: #2c5282;
     --secondary-color: #6c757d;
+
+    /* 边框与分割线 */
     --border-color: #e9ecef;
     --header-border-color: #d9e1e8;
+    --table-border-color: #e9ecef;
+    /* 新增表格边框变量 */
+
+    /* 功能区域背景 */
     --code-bg-color: #f8f9fa;
     --quote-bg-color: #f8f9fa;
     --table-header-bg: #f0f5fb;
     --table-alt-bg: #fafbfc;
+
+    /* 特殊元素颜色 */
+    --quote-border-color: rgba(74, 111, 165, 0.6);
     --shadow-color: rgba(0, 0, 0, 0.08);
     --task-checked-color: #28a745;
     --sidebar-hover-bg: rgba(74, 111, 165, 0.08);
-    --quote-border-color: rgba(74, 111, 165, 0.6);
+    --link-border-color: rgba(74, 111, 165, 0.2);
+
+    /* 字体设置 */
+    --font-sans: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;
+    --font-mono: "Fira Code", "Source Code Pro", "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
+
+    /* 专注模式 */
+    --blur-text-color: #C8C8C8;
+}
+
+/* 全局设置 */
+html {
+    font-size: 16px;
 }
 
 body {
-    font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;
-    color: #343a40;
+    font-family: var(--font-sans);
+    color: var(--text-color);
+    background-color: var(--bg-color);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 97%;
+    /* 保持原有大小设置 */
+    padding-bottom: 80px;
+    /* 增加底部留白，与夜间模式一致 */
 }
 
+/* 写作区域 */
 #write {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0;
+    padding: 20px 30px;
+    /* 增加默认内边距优化阅读体验 */
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     position: relative;
     margin-top: 1.8em;
     margin-bottom: 1em;
@@ -78,33 +122,71 @@ h6 {
     margin-top: 1.5em;
 }
 
-p, blockquote, ul, ol, dl, table {
-    font-size: 15px;
+/* 标题锚点悬停效果 */
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+h2:hover,
+h3:hover {
+    border-bottom-color: var(--border-color);
+}
+
+/* 段落与列表 */
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    font-size: 1rem;
     margin-bottom: 1.1em;
     line-height: 1.65;
 }
 
-/* 限制链接样式只在编辑区域内生效 */
+ul,
+ol {
+    padding-left: 2.2em;
+    margin: 1.2em 0;
+}
+
+ul li,
+ol li {
+    margin-bottom: 0.4em;
+    position: relative;
+}
+
+ul li::marker {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+ol li::marker {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* 链接样式 */
 #write a {
     color: var(--primary-color);
     text-decoration: none;
     transition: all 0.2s ease;
-    border-bottom: 1px solid rgba(74, 111, 165, 0.2);
+    border-bottom: 1px solid var(--link-border-color);
     padding-bottom: 2px;
 }
 
 #write a:hover {
-    color: #2c5282;
+    color: var(--primary-hover-color);
     border-bottom-color: var(--primary-color);
 }
 
-/* 修正表格内的链接样式 */
-#write table a {
-    border-bottom: none !important;
-    text-decoration: none !important;
-    background-image: none !important;
-}
-
+/* 引用块 */
 blockquote {
     border-left: 3px solid var(--quote-border-color);
     padding: 1em 1.3em;
@@ -132,12 +214,15 @@ blockquote blockquote {
     border-left: 2px solid #adb5bd;
 }
 
-#write .md-fences, #write code, #write tt {
-    font-size: 13px;
+/* 代码块与行内代码 */
+#write .md-fences,
+#write code,
+#write tt {
+    font-size: 0.9em;
     background-color: var(--code-bg-color);
     border-radius: 4px;
-    font-family: "Fira Code", "Source Code Pro", "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    font-family: var(--font-mono);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 #write code {
@@ -153,10 +238,10 @@ blockquote blockquote {
     margin: 1.8em 0;
     padding: 1.2em 1.5em;
     line-height: 1.5;
-    border: 1px solid var(--border-color);
     position: relative;
 }
 
+/* 代码块语言标签 */
 .md-fences::before {
     content: attr(lang);
     position: absolute;
@@ -175,8 +260,11 @@ blockquote blockquote {
     pointer-events: none;
 }
 
+/* 表格样式 */
 table {
     width: 100%;
+    table-layout: fixed;
+    /* 强制表格宽度不超出容器 */
     border-collapse: collapse;
     margin: 1.8em 0;
     border-radius: 6px;
@@ -184,7 +272,7 @@ table {
 }
 
 table tr {
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--table-border-color);
     margin: 0;
     padding: 0;
 }
@@ -200,47 +288,44 @@ thead {
 table tr th {
     font-weight: 600;
     background-color: var(--table-header-bg);
-    border: 1px solid var(--border-color);
-    border-bottom: 2px solid var(--border-color);
+    border: 1px solid var(--table-border-color);
+    border-bottom: 2px solid var(--table-border-color);
     padding: 0.75em 0.9em;
     text-align: left;
     color: #212529;
-    font-size: 15px;
+    font-size: 1rem;
+    word-break: break-word;
+    /* 防止长文本撑开 */
 }
 
 table tr td {
-    border: 1px solid var(--border-color);
-    padding: 0.7em 0.9em;
+    border: 1px solid var(--table-border-color);
+    padding: 0.6em 0.8em;
     color: #495057;
-    font-size: 15px;
+    font-size: 1rem;
+    word-break: break-word;
+    /* 防止长文本撑开 */
 }
 
-ul, ol {
-    padding-left: 2.2em;
-    margin: 1.2em 0;
+/* 修正表格内链接样式 */
+#write table a {
+    border-bottom: none !important;
+    text-decoration: none !important;
+    background-image: none !important;
 }
 
-ul li, ol li {
-    margin-bottom: 0.4em;
-    position: relative;
+#write table a:hover {
+    text-decoration: underline !important;
 }
 
-ul li::marker {
-    color: var(--primary-color);
-    font-weight: bold;
-}
-
-ol li::marker {
-    color: var(--secondary-color);
-    font-weight: 500;
-}
-
+/* 任务列表 */
 .md-task-list-item>input {
     margin-left: -1.5em;
     margin-top: 0.3em;
     transform: scale(1.2);
     border: 1px solid #adb5bd;
     border-radius: 3px;
+    transition: all 0.2s ease;
 }
 
 .md-task-list-item>input:checked {
@@ -248,6 +333,12 @@ ol li::marker {
     border-color: var(--task-checked-color);
 }
 
+.md-task-list-item>input:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.3);
+}
+
+/* 分割线 */
 hr {
     height: 1px;
     margin: 2.5em 0;
@@ -255,35 +346,14 @@ hr {
     background: linear-gradient(to right, transparent, var(--border-color), transparent);
 }
 
-.md-task-list-item>input {
-    transition: all 0.2s ease;
-}
-
-.md-task-list-item>input:hover {
-    border-color: var(--primary-color);
-    transform: scale(1.3);
-}
-
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
-    opacity: 0.8;
-}
-
-h2:hover, h3:hover {
-    border-bottom-color: var(--border-color);
-}
-
+/* 侧边栏样式 */
 #typora-sidebar {
     background-color: var(--side-bar-bg-color) !important;
     border-right: 1px solid var(--border-color);
 }
 
-.sidebar-menu-list-item {
+.sidebar-menu-list-item,
+.ty-sidebar-footer-item {
     border-bottom: none !important;
 }
 
@@ -293,10 +363,6 @@ h2:hover, h3:hover {
 
 .ty-sidebar-footer {
     border-top: 1px solid var(--border-color);
-}
-
-.ty-sidebar-footer-item {
-    border-bottom: none !important;
 }
 
 #ty-sidebar-search-item {
@@ -310,7 +376,8 @@ h2:hover, h3:hover {
     transition: all 0.2s ease;
 }
 
-.file-list-item:hover, .file-list-item.active {
+.file-list-item:hover,
+.file-list-item.active {
     background-color: var(--sidebar-hover-bg);
 }
 
@@ -318,19 +385,35 @@ h2:hover, h3:hover {
     background-color: var(--sidebar-hover-bg);
 }
 
-.file-node-icon, .file-node-open-state {
+.file-node-icon,
+.file-node-open-state {
     visibility: visible !important;
 }
 
+/* 专注模式 (Focus Mode) 优化 */
 .on-focus-mode blockquote {
     border-left-color: rgba(74, 111, 165, 0.3);
 }
 
-footer {
-    position: relative;
-    clear: both;
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: var(--blur-text-color) !important;
+    text-shadow: none !important;
 }
 
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) img {
+    opacity: 0.5;
+}
+
+.on-focus-mode .task-list-item:not(.md-focus-container)>input {
+    opacity: 0.5;
+}
+
+/* 源代码模式 (Source Code Mode) */
+#typora-source {
+    font-family: var(--font-mono);
+}
+
+/* 页脚 */
 footer.ty-footer {
     background: white;
     border-top: 1px solid var(--border-color);
@@ -341,23 +424,22 @@ footer.ty-footer {
     margin-right: auto;
 }
 
+/* 响应式调整 */
 @media (max-width: 768px) {
     #write {
         padding: 25px;
     }
-    
+
     footer.ty-footer {
         padding: 15px 25px;
         width: calc(100% - 50px);
     }
-    
+
     h1 {
         font-size: 1.7rem;
     }
-    
+
     h2 {
         font-size: 1.4rem;
     }
 }
-
-/* Dark-mode overrides moved to aurora-night.css to avoid conflicts with manual theme switching. */
